@@ -16,8 +16,6 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
-
         $adminRole = Role::where('name', 'Administrator')->first();
         $supportRole = Role::where('name', 'Support')->first();
         $managerRole = Role::where('name', 'Manager')->first();
@@ -52,4 +50,6 @@ class UserTableSeeder extends Seeder
         $manager->roles()->attach($managerRole);
         $customer->roles()->attach($customerRole);
     }
+
+
 }

@@ -15,6 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @can('getControlPanel', \App\Models\User::all())
+                    <x-nav-link :href="route('control.users.index')" :active="request()->routeIs('control.users.*')">
+                        {{ __('Control Panel') }}
+                    </x-nav-link>
+                    @endcan
+                    <x-nav-link :href="route('tickets.index')" :active="request()->routeIs('tickets.*')">
+                        {{ __('Tickets') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -35,6 +44,11 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
+                            @impersonate()
+                            <x-dropdown-link :href="route('control.impersonate.destroy')">
+                                {{ __('Exit From ' . \Illuminate\Support\Facades\Auth::user()->name) }}
+                            </x-dropdown-link>
+                            @endimpersonate
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 

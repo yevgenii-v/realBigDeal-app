@@ -15,8 +15,6 @@ class RoleTableSeeder extends Seeder
      */
     public function run()
     {
-        Role::truncate();
-
         Role::create(['name' => 'Customer']);
         Role::create(['name' => 'Manager']);
         Role::create(['name' => 'Support']);
