@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Control\UserController;
 use App\Http\Controllers\Control\ImpersonateController;
+use App\Http\Controllers\Control\UserController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\Market\CategoryController;
+use App\Http\Controllers\Market\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +25,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+//Market
+Route::group(['prefix' => 'market', 'middleware' => 'auth', 'as' => 'market.'], function () {
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', ProductController::class);
+});
 
 //Control Panel
 Route::group(['prefix' => 'control', 'middleware' => 'auth', 'as' => 'control.'], function () {

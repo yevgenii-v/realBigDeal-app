@@ -28,5 +28,7 @@ class DatabaseSeeder extends Seeder
         User::where('id', '>', 4)->each(function ($user) {
             $user->roles()->attach(Role::where('name', 'Customer')->first());
         });
+
+        $this->call(ProductCategoriesTableSeeder::class);
     }
 }

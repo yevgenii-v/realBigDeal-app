@@ -15,6 +15,9 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('market.categories.index')" :active="request()->routeIs('market.categories.index')">
+                        {{ __('Market') }}
+                    </x-nav-link>
                     @can('getControlPanel', \App\Models\User::all())
                     <x-nav-link :href="route('control.users.index')" :active="request()->routeIs('control.users.*')">
                         {{ __('Control Panel') }}
